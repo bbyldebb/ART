@@ -1,0 +1,57 @@
+dataset: dataset_name_D2
+path:
+    case_path: data/D2/cases/cases.csv
+    ad_case_path: data/D2/cases/ad_cases.pkl
+    hash_dir: data/D2/hash_info/
+    sample_dir: data/D2/samples/
+
+feat_dim:
+    metric: 256
+    trace: 2
+    log: 8
+
+train_samples_num: whole # Number of training samples. Choose 'whole' if all samples are selected.
+
+model_param:
+    instance_dim: 18
+    num_heads: 2
+    tf_layers: 1
+
+    channel_dim: 266
+    gnn_hidden_dim: 64
+    gnn_out_dim: 32
+    noise_rate: 0.5
+    gnn_layers: 2 # The number of layers of the encoder/decoder.
+
+    gru_hidden_dim: 32
+    gru_layers: 1
+
+    epochs: 1000
+    batch_size: 4
+    learning_rate: 0.001
+
+downstream_param:
+    AD:
+        split_ratio: 0.6
+        method: 'num'
+        t_value: 3
+        q: 0.1
+        level: 0.95
+        delay: 600
+        impact_window: 300
+        verbose: False
+    FT:
+        split_ratio: 0.6
+        method: 'num'
+        t_value: 5
+        before: 59
+        after: 300
+        max_clusters: 25
+        verbose: False
+    RCL:
+        split_ratio: 0.6
+        method: 'num'
+        t_value: 3
+        before: 59
+        after: 300
+        verbose: False
